@@ -1,6 +1,10 @@
 module.exports = {
     entry: "./src/index.tsx",
     mode: "none",
+    node: {
+        fs: "empty",
+        path: "empty"
+    },
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
