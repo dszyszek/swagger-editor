@@ -19,8 +19,8 @@ class App extends React.Component {
           <div className="container mt-3" style={{height: '90%'}}>
 
             <div className='row text-center header'>
-              <p className='m-auto d-inline-block w-100 m-0' style={{color: 'white', fontSize: '10px'}}>SWAGGER EDITOR</p>
-              
+                <p className='m-auto d-inline-block w-100 m-0' style={{color: 'white', fontSize: '10px'}}>SWAGGER EDITOR</p>
+            
             </div>
 
             <div className="row" style={{height: '97%'}}>

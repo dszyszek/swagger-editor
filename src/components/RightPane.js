@@ -22,8 +22,15 @@ class RightPane extends React.Component {
             return (
             <div className="col-9 px-0">
 
+                    <pre
+                        className='m-0 normalizeElements normalizePre'
+                    >
+
+                    </pre>
+
                     <textarea 
                         name='textarea' 
+                        className='m-0 normalizeElements normalizeTextarea'
                         value={this.state.textarea} 
                         onChange={e => {
                             this.setValueOfInput(e);
