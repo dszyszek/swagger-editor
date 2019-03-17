@@ -18,7 +18,8 @@ import {diagnose} from '../utils/linting';
                 textarea: '',
                 toHighlight: '',
                 fontSize: 12,
-                errorBoxVisibility: true
+                errorBoxVisibility: true,
+                cursor: {}
             };
 
             this.setValueOfInput = this.setValueOfInput.bind(this);
@@ -34,6 +35,13 @@ import {diagnose} from '../utils/linting';
             this.props.getCurrentState();
         }
 
+        componentDidUpdate() {
+            if (this.state.cursor.keycode === 9) {
+                console.log('right tab clicked');
+                ReactDOM.findDOMNode(this.refs.textareaElement).selectionEnd = this.state.cursor.position + 1;
+            }
+        }
+
         setValueOfInput(e) {
             this.setState({
                 [e.target.name]: e.target.value.trim()
@@ -42,6 +50,7 @@ import {diagnose} from '../utils/linting';
         }
 
         preventNativeTab(event) {
+            event.persist();
             const target = event.currentTarget; 
 
             if (event.keyCode === 9) {
@@ -52,10 +61,21 @@ import {diagnose} from '../utils/linting';
 
                 this.setState(prev => ({
                     ...prev,
-                    textarea: finText
+                    textarea: finText,
+                    cursor: {
+                        position: end,
+                        keycode: event.keyCode
+                    }
                 }));
-
+                return;
             }
+            console.log(event.keyCode);
+            this.setState(prev => ({
+                ...prev,
+                cursor: {
+                    keycode: event.keyCode
+                }
+            }));
         }
 
         changeFontSize(e) {
