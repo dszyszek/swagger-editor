@@ -1,9 +1,13 @@
 import React from 'react';
+import * as ReactDOM from "react-dom";
 import {connect} from 'react-redux';
+import * as _ from 'lodash';
+import * as reactStringReplace from 'react-string-replace';
+import classnames from 'classnames';
 
 import {addToState, getCurrentState} from '../actions/jsonActions';
 import {setError, clearErrors} from '../actions/errorActions';
-import * as reactStringReplace from 'react-string-replace';
+import {diagnose} from '../utils/linting';
 
 
 class RightPane extends React.Component {

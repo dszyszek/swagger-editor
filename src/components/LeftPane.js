@@ -2,6 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {getCurrentState} from '../actions/jsonActions';
+import JsonTree from './JsonTree';
+import handleTree from '../utils/makeTree';
+
+
 class LeftPane extends React.Component {
     // This component will render tree view of JSON input
 
@@ -27,6 +31,10 @@ class LeftPane extends React.Component {
     }
 
     render() {
+        let data;
+        try {
+            data = handleTree(JSON.parse(this.props.json.jsonValue));   // delegate making tree-skeleton object from JSON input
+        } catch(e) {}
 
         return (
             <div className="col-3 LeftPane_body" style={{maxHeight: '100%'}}>
@@ -34,6 +42,7 @@ class LeftPane extends React.Component {
                     <p className='text-center mx-auto my-1'>Tree view</p>
                 </div>
 
+                {data && <div style={{overflow: 'scroll', height: '94%'}}><JsonTree data={data} /> </div>}
                 {this.state.errors && <p className='LeftPane_error_paragraph'>{this.state.errors.error.jsonError}</p>}
                 {this.state.errors && <p className='LeftPane_error_paragraph'>{this.state.errors.error.dataError}</p>}
             </div>
