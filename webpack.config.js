@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: "./src/index.js",
     mode: "none",
     node: {
         fs: "empty",
@@ -13,19 +13,36 @@ module.exports = {
         path: __dirname + "/dist"
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".js", ".json"]
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            {
+                loader: 'babel-loader',
+                test: /\.js$/,
+                exclude: /node_modules/
+            }, {
+                test: /\.s?css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }, {
+                test: /\.(png|jp(e*)g|svg)$/,  
+                use: [{
+                    loader: 'url-loader' 
+                }]
+            }
         ]
     },
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000
     },
     plugins: [new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'src', 'index.html')
+        template: path.join(__dirname, 'dist', 'index.html')
     })]
 };
