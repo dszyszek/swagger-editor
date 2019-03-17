@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {addToState, getCurrentState} from '../actions/jsonActions';
 import {setError, clearErrors} from '../actions/errorActions';
+import * as reactStringReplace from 'react-string-replace';
 
 
 class RightPane extends React.Component {
@@ -11,7 +12,8 @@ class RightPane extends React.Component {
             super();
 
             this.state = {
-                textarea: ''
+                textarea: '',
+                toHighlight: ''
             };
 
             this.setValueOfInput = this.setValueOfInput.bind(this);
@@ -63,6 +65,15 @@ class RightPane extends React.Component {
                 if (errorPosition) {
                     this.props.setError({jsonError: `Rendering terminated: syntax error on position: ${errorPosition} (check highlighted part)`}, 'SET_ERROR');
                 }
+
+                const min = Math.max(parseInt(errorPosition) - 30, 0);
+                const max = Math.min(parseInt(errorPosition) + 30, this.state.textarea.length);
+
+                const toHighlight = jsonValue.slice(min, max);
+                this.setState(prev => ({
+                    ...prev,
+                    toHighlight
+                }));
             }
         }
 
@@ -73,7 +84,12 @@ class RightPane extends React.Component {
 
                     <pre
                         className='m-0 normalizeElements normalizePre'
+                        ref='preElement'
                     >
+
+                        {reactStringReplace(this.state.textarea, this.state.toHighlight, (match, i) => {
+                            return <span key={i} style={{ backgroundColor: '#dd8686', color: '#dd8686' }}>{match}</span>
+                        })}
 
                     </pre>
 
@@ -81,12 +97,16 @@ class RightPane extends React.Component {
                         name='textarea' 
                         className='m-0 normalizeElements normalizeTextarea'
                         value={this.state.textarea} 
+                        ref='textareaElement'
                         onChange={e => {
                             this.props.clearErrors();
                             this.setValueOfInput(e);
                         }}
                         onKeyUp={e => {
                             this.validate(e);
+                        }}
+                        onScroll={e => {
+                            ReactDOM.findDOMNode(this.refs.preElement).scrollTop = e.currentTarget.scrollTop; // synchronise scrollTop value of pre and textarea tags
                         }}
                     ></textarea>
                     
