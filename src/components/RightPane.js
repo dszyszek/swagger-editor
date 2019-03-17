@@ -127,8 +127,8 @@ class RightPane extends React.Component {
                         name='textarea' 
                         className='m-0 normalizeElements normalizeTextarea'
                         value={this.state.textarea} 
-                        ref='textareaElement'
                         style={{fontSize: `${this.state.fontSize}px`}}
+                        ref='textareaElement'
                         onChange={e => {
                             this.props.clearErrors();
                             this.setValueOfInput(e);
@@ -136,6 +136,7 @@ class RightPane extends React.Component {
                         onKeyUp={e => {
                             this.validate(e);
                         }}
+                        onKeyDown={this.preventNativeTab}
                         onScroll={e => {
                             ReactDOM.findDOMNode(this.refs.preElement).scrollTop = e.currentTarget.scrollTop; // synchronise scrollTop value of pre and textarea tags
                         }}
