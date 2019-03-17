@@ -1,5 +1,6 @@
 ## Swagger editor
-A simple text editor you can use to write valid JSON file!
+A simple text editor you can use to write valid JSON file! <br>
+See DEMO: [here](https://json-lint.herokuapp.com/)
 
 ## Technologies
 
