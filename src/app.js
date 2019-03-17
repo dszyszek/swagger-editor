@@ -1,4 +1,6 @@
 import React from 'react';
+import LeftPane from './components/LeftPane';
+import RightPane from './components/RightPane';
 
 import './styles/styles.scss';
 import img from '../dist/img/cursor.png';
@@ -22,6 +24,9 @@ class App extends React.Component {
             </div>
 
             <div className="row" style={{height: '97%'}}>
+
+                <LeftPane  />
+                <RightPane />
 
 
             </div>
