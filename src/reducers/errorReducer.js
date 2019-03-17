@@ -1,7 +1,8 @@
-import {SET_ERROR, CLEAR_ERRORS} from './types';
+import {SET_LINT_ERROR, SET_ERROR, CLEAR_ERRORS} from './types';
 
 const initialState = {
-    error: {}
+    error: {},
+    lintError: {}
 };
 
 const errorReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const errorReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload
+            };
+
+        case SET_LINT_ERROR:
+            return {
+                ...state,
+                lintError: action.payload
             };
 
         case CLEAR_ERRORS:

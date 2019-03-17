@@ -1,7 +1,8 @@
 import {ADD_TO_STATE, UPDATE_STATE} from './types';
 
 const initialState = {
-    jsonValue: null
+    jsonValue: null,
+    toHighlight: ''
 };
 
 const jsonReducer = (state = initialState, action) => {

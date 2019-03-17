@@ -85,9 +85,9 @@ class RightPane extends React.Component {
    
             try {
                 const parsed = JSON.parse(jsonValue);
-                // const lintingResults = diagnose(parsed);
+                const lintingResults = diagnose(parsed);
 
-
+                this.props.setError(lintingResults.results, 'SET_LINT_ERROR');
             } catch (e) {
 
                 const stringError =  String(e);
