@@ -13,12 +13,15 @@ class RightPane extends React.Component {
 
             this.state = {
                 textarea: '',
-                toHighlight: ''
+                toHighlight: '',
+                fontSize: 12
             };
 
             this.setValueOfInput = this.setValueOfInput.bind(this);
             this.validate = this.validate.bind(this);
             this.checkIfJson = this.checkIfJson.bind(this);
+            this.preventNativeTab = this.preventNativeTab.bind(this);
+            this.changeFontSize = this.changeFontSize.bind(this);
         }
 
         setValueOfInput(e) {
@@ -27,6 +30,32 @@ class RightPane extends React.Component {
             });
             this.props.addToState(e.target.value);
         }
+
+        preventNativeTab(event) {
+            const target = event.currentTarget; 
+
+            if (event.keyCode === 9) {
+                event.preventDefault(); 
+                const start = target.selectionStart;
+                const end = target.selectionEnd;
+                const finText = target.value.substring(0, start) + '\t' + target.value.substring(end);
+
+                this.setState(prev => ({
+                    ...prev,
+                    textarea: finText
+                }));
+
+            }
+        }
+
+        changeFontSize(e) {
+            const target = e.currentTarget;
+
+            this.setState(prev => ({
+                ...prev,
+                fontSize: prev.fontSize + parseInt(target.getAttribute('val'))
+            }));
+        } 
 
         checkIfJson(jsonValue) {    // check if text from user input has a proper JSON format
             if (!jsonValue) {
@@ -85,6 +114,7 @@ class RightPane extends React.Component {
                     <pre
                         className='m-0 normalizeElements normalizePre'
                         ref='preElement'
+                        style={{fontSize: `${this.state.fontSize}px`}}
                     >
 
                         {reactStringReplace(this.state.textarea, this.state.toHighlight, (match, i) => {
@@ -98,6 +128,7 @@ class RightPane extends React.Component {
                         className='m-0 normalizeElements normalizeTextarea'
                         value={this.state.textarea} 
                         ref='textareaElement'
+                        style={{fontSize: `${this.state.fontSize}px`}}
                         onChange={e => {
                             this.props.clearErrors();
                             this.setValueOfInput(e);
@@ -109,6 +140,11 @@ class RightPane extends React.Component {
                             ReactDOM.findDOMNode(this.refs.preElement).scrollTop = e.currentTarget.scrollTop; // synchronise scrollTop value of pre and textarea tags
                         }}
                     ></textarea>
+
+                    <div className='m-0 text-center viewButtonField'> 
+                        <button val='1' className='w-50 h-100 p-0 m-0 viewButton' onClick={this.changeFontSize} disabled={this.state.fontSize >= 16}>+</button>
+                        <button val='-1' className='w-50 h-100 p-0 m-0 viewButton' onClick={this.changeFontSize} disabled={this.state.fontSize <= 8}>-</button>
+                    </div>
                     
             </div>
             );

@@ -68,3 +68,31 @@ body {
     background-color: $RightPane_background;
     color: $RightPane_background;
 }
+
+.viewButtonField {
+    z-index: 3*$zIndexTextarea;
+    width: 25%;
+    height: 6%;
+    position: absolute;
+    top: 0; 
+    right: 0;
+    width: 8%; 
+ }
+
+ .viewButton {
+    background-color: $LeftPane_body;
+    color: lighten($backgroundColor, 20%);
+    border: 0;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        background-color: black;
+    }
+
+    &:not(:last-child) {
+        border-right: 1px solid $headerTextColor;
+    }
+ }
