@@ -36,18 +36,18 @@ There are also some features created to improve user experience (UX): you can ch
 
 For everyone who wants to run editor locally: process is nice and easy!
 
-Just clone the repo:
-- git clone editor.bundle ./
+Just clone the repo: <br>
+```$ git clone editor.bundle ./```<br>
 and change directory
 
 Or you can download .zip file and unpack it wherever you want.
-Then just write in termianl window (make sure you are in proper directory!):
-- npm i 
+Then just write in termianl window (make sure you are in proper directory!): <br>
+```$ npm i``` <br>
 Thats it! From now you have everything you need to experiment with Swagger editor!
-Wants to run it in your browser? Just write in terminal:
-- npm start
-And in your browser (in the url section) write:
-- http://localhost:9000
+Wants to run it in your browser? Just write in terminal: <br>
+```$ npm start``` <br>
+And in your browser (in the url section) write: <br>
+```http://localhost:9000``` <br>
 Simple as that.
 
 ## Credits
