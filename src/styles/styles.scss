@@ -5,6 +5,7 @@ $LeftPane_body: #272727;
 $backgroundColor: #e5d4c5;
 $headerTextColor: #565656;
 $RightPane_background: #737373;
+$hoverButtondPercentage: 20%;
 
 body {
     font-family: 'Lato', sans-serif;
@@ -80,12 +81,17 @@ body {
     width: 100%;
     height: 8%;
     border: $LeftPane_body;
-    &:active {
-        background-color: black;
-    }
 
     &:focus {
         outline: none;
+    }
+
+    &:hover {
+        background-color: lighten($LeftPane_body, $hoverButtondPercentage);
+    }
+
+    &:active {
+        background-color: black;
     }
  }
 
@@ -118,13 +124,18 @@ body {
         outline: none;
     }
 
+    &:not(:last-child) {
+        border-right: 1px solid $headerTextColor;
+    }
+
+    &:hover {
+        background-color: lighten($LeftPane_body, $hoverButtondPercentage);
+    }
+
     &:active {
         background-color: black;
     }
 
-    &:not(:last-child) {
-        border-right: 1px solid $headerTextColor;
-    }
  }
 
  .warningClass {
