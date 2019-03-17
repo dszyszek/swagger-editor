@@ -1,6 +1,9 @@
 import React from 'react';
 import LeftPane from './components/LeftPane';
 import RightPane from './components/RightPane';
+import {connect} from 'react-redux';
+
+import {getCurrentState} from './actions/jsonActions';
 
 import './styles/styles.scss';
 import img from '../dist/img/cursor.png';
@@ -12,6 +15,10 @@ class App extends React.Component {
         this.state = {
             textarea: ''
           }
+    }
+
+    componentWillMount() {
+      this.props.getCurrentState();
     }
   
     render() {
@@ -36,4 +43,8 @@ class App extends React.Component {
     }
   }
 
-export default App;
+  const mapStateToProps = state => ({
+    errors: state.errors
+  });
+  
+  export default connect(mapStateToProps, {getCurrentState})(App);

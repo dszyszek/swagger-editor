@@ -26,6 +26,17 @@ body {
    background-color: $LeftPane_body;
 }
 
+.LeftPane_error_paragraph {
+    position: absolute;
+    left: 50%; 
+    right: 50%;
+    top: 40%;
+    bottom: 50%;
+    transform: translate(-45%, 0);
+    color: lighten($backgroundColor, 20%);
+    width: 70%;
+ }
+
 .normalizeTextarea {
     z-index: $zIndexTextarea;
     background: transparent;
