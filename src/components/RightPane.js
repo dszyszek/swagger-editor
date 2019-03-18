@@ -37,7 +37,6 @@ import {diagnose} from '../utils/linting';
 
         componentDidUpdate() {
             if (this.state.cursor.keycode === 9) {
-                console.log('right tab clicked');
                 ReactDOM.findDOMNode(this.refs.textareaElement).selectionEnd = this.state.cursor.position + 1;
             }
         }
