@@ -68,7 +68,6 @@ import {diagnose} from '../utils/linting';
                 }));
                 return;
             }
-            console.log(event.keyCode);
             this.setState(prev => ({
                 ...prev,
                 cursor: {
