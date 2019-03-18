@@ -188,7 +188,7 @@ import {diagnose} from '../utils/linting';
                         value={this.state.textarea} 
                         style={{fontSize: `${this.state.fontSize}px`}}
                         ref='textareaElement'
-                        spellcheck="false"
+                        spellCheck='false'
                         onChange={e => {
                             this.props.clearErrors();
                             this.setValueOfInput(e);
