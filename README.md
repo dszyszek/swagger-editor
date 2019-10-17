@@ -31,7 +31,9 @@ If your file contain critical error (e.g syntax) there will be explicit informat
 
 <b>Other</b>
 
-There are also some features created to improve user experience (UX): you can change font size and use tab key to fasten writing process. Also status button will contain info about amount of catched errors (in case there are no left, you will see OK status)
+There are also some features created to improve user experience (UX): you can change font size and use tab key to fasten writing process. Also status button will contain info about amount of catched errors (in case there are no left, you will see OK status) <br>
+
+If you want to try check out how the linter is working, run the app and paste content from /examplary_file_to_lint/app.json file!
 
 ## Installation
 
